@@ -75,9 +75,9 @@ const constants = {
             name: "Real Time Sharing White board",
             tech: "React Js, Node Js",
             descr: [
-                "An interface which makes it easy to communicate with people anywhere in the world by sending and receiving messages in real time.",
-                "React Native is used for building user interactive interface that is responsible for rendering the list of users and enhanced chat room.",
-                "Firebase Real time database is used for Receiving and Sending the messages that reflects on application real time."
+                "An interface where user can share his White-board and make changes to the white board and this changes are made visible to other users.",
+                "To develop the user interface I have used React Js and Bootstrap. To draw graphics on White board I have used Rough Js library.",
+                "I have used Node Js for Back end service and to reflect real time changes of the white board I have used Socket.IO library."
             ],
         },
     ],
