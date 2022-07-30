@@ -137,6 +137,20 @@ const constants = {
 
     form_submit_button: "Send Message",
 
+
+    SERVICE_ID: "",
+    TEMPLATE_ID: "",
+    USER_ID: "",
+
+
+
+    nameRequired: "Name is Required",
+    emailRequired: "Email is Required",
+    messageRequired: "Message is Required",
+
+    invalidEmail: "Email is Invalid",
+
 }
 
 export default constants
+

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import emailJs from '@emailjs/browser';
+import React, { useState, useRef } from 'react';
 
 import './contact.css'
 import constants from '../../constants';
@@ -7,8 +8,12 @@ import constants from '../../constants';
 const {
     contact_card_title, contact_section_header, contact_section_subheader,
     input_placeholder_email, input_placeholder_message, input_placeholder_name,
-    input_title_email, input_title_message, input_title_name, form_submit_button
+    input_title_email, input_title_message, input_title_name, form_submit_button,
+    SERVICE_ID, TEMPLATE_ID, USER_ID,
+    nameRequired, emailRequired, messageRequired, invalidEmail
 } = constants
+
+export const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const ContactSection = (props) => {
 
@@ -16,9 +21,33 @@ const ContactSection = (props) => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    const onNameChange = (e) => setName(e.target.value)
-    const onEmailChange = (e) => setEmail(e.target.value)
-    const onMessageChange = (e) => setMessage(e.target.value)
+    const [error, setError] = useState('')
+
+    const onNameChange = (e) => { setName(e.target.value); setError(''); }
+    const onEmailChange = (e) => { setEmail(e.target.value); setError(''); }
+    const onMessageChange = (e) => { setMessage(e.target.value); setError(''); }
+
+    const formRef = useRef()
+
+    const sendEmail = (e) => {
+        e.preventDefault()
+
+        if (name.trim() === "") { setError(nameRequired); return; }
+        if (email.trim() === "") { setError(emailRequired); return; }
+        if (!emailRegex.test(email)) { setError(invalidEmail); return; }
+        if (message.trim() === "") { setError(messageRequired); return; }
+
+        emailJs.sendForm(
+            SERVICE_ID,
+            TEMPLATE_ID,
+            formRef.current,
+            USER_ID
+        ).then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+    }
 
     return (
         <div id={"contact-section"} className="contact-me-part">
@@ -54,13 +83,14 @@ const ContactSection = (props) => {
 
 
                     <div className="col-lg-6 col-md-5 col-sm-12 my-auto">
-                        <div className="d-flex flex-column card-contact-right">
+                        <form ref={formRef} className="d-flex flex-column card-contact-right" onSubmit={sendEmail}>
 
                             <div className="input-group my-3 d-flex flex-column">
                                 <label>{input_title_name}</label>
                                 <input
                                     type={"text"}
                                     value={name}
+                                    name={"name"}
                                     onChange={onNameChange}
                                     className={"input-groups"}
                                     placeholder={input_placeholder_name}
@@ -71,6 +101,7 @@ const ContactSection = (props) => {
                                 <label>{input_title_email}</label>
                                 <input
                                     type={"text"}
+                                    name={"email"}
                                     value={email}
                                     onChange={onEmailChange}
                                     className={"input-groups"}
@@ -82,6 +113,7 @@ const ContactSection = (props) => {
                                 <label>{input_title_message}</label>
                                 <textarea
                                     type={"text"}
+                                    name={"message"}
                                     value={message}
                                     onChange={onMessageChange}
                                     className={"input-groups"}
@@ -90,10 +122,12 @@ const ContactSection = (props) => {
                             </div>
 
                             <div className="input-group my-3 d-flex flex-column">
-                                <button className="btn btn-success">{form_submit_button}</button>
+                                <input value={form_submit_button} type='submit' className="btn btn-success" />
                             </div>
 
-                        </div>
+                            {error.length > 0 ? <span className="font-weight-bold text-danger">{error}</span> : null}
+
+                        </form>
                     </div>
 
 
