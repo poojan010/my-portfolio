@@ -1,25 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Oswald:wght@500&family=Ubuntu:wght@300&display=swap');
 
-:root {
+/* :root {
     --primary-app-color : #02203c;
     --secondary-app-color : #001528;
     --standout-color : #fffb00;
+} */
+
+:root {
+    --primary-app-color: #104c91;
+    --secondary-app-color: #0e387a;
+    --standout-color: #fffb00;
 }
 
-span{
+span {
     font-family: "Ubuntu";
 }
 
-.App {
-}
+.App {}
 
-*   {
+* {
     padding: 0;
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
 
-.section-header{
+.section-header {
     font-family: "Ubuntu";
     font-weight: 800;
     font-size: 3.5rem;
@@ -28,7 +36,7 @@ span{
     text-align: center;
 }
 
-.section-sub-header{
+.section-sub-header {
     font-family: "Ubuntu";
     font-weight: 700;
     font-size: 1.3rem;
@@ -37,4 +45,13 @@ span{
     text-align: center;
 }
 
+/** mobile view css */
+@media all and (max-width: 786px) {
+    .section-header {
+        font-size: 2.8rem;
+    }
 
+    .section-sub-header {
+        font-size: 1.1rem;
+    }
+}

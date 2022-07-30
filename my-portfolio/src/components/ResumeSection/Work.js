@@ -1,24 +1,13 @@
 import React from 'react';
+
 import './resume.css'
+import constants from '../../constants';
 
-const workData = [
-    {
-        name : "Bacancy Technology",
-        duration : "2021-Present",
-        position : "Software Developer",
-        description : [
-            "I am responsible for designing, building and maintaining efficient and user-friendly mobile applications.",
-            "I am working on the project which requires maintenance of existing application where I deliver new features according to client needs and i make sure that user gets the seem less experience.",
-            "I have worked on many modules like handling notification re directions, deep linking, UI development, Accessing native modules(location, gallery, contacts, calendar etc..)"
-        ]
-    }
-]
-
-
+const { work_details } = constants
 
 const Work = (props) => {
 
-    const renderWork = (item,index) => (
+    const renderWork = (item, index) => (
         <div key={index}>
             <div className="d-flex flex-column">
                 <div className="d-flex flex-row justify-content-between">
@@ -31,7 +20,7 @@ const Work = (props) => {
                 <span className="position">{item.position}</span>
                 <span className="description-position">
                     <ul>
-                        {item.description.map((descr) => <li>{descr}</li> )}
+                        {item.description.map((descr) => <li>{descr}</li>)}
                     </ul>
                 </span>
             </div>
@@ -42,8 +31,8 @@ const Work = (props) => {
     return (
         <div className="work-inside-new mx-2 my-4">
 
-            {workData.map((item,index) => renderWork(item,index))}
-            
+            {work_details.map((item, index) => renderWork(item, index))}
+
         </div>
     );
 }

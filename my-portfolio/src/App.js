@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ResumeSection from './components/ResumeSection';
 import ContactSection from './components/ContactSection';
+import CodingProfileSection from './components/CodingProfilesSection';
 
 const App = () => {
 
@@ -15,6 +16,8 @@ const App = () => {
             <AboutSection />
 
             <ResumeSection />
+
+            <CodingProfileSection />
 
             <ContactSection />
 

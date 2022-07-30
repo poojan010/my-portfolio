@@ -1,27 +1,13 @@
 import React from 'react';
-import './resume.css'
 
-const educationData = [
-    { 
-        institue : 'Vishwakarma Goverment Engineering College', 
-        degree : 'Bachelors in Computer Engineering',
-        duration : '2017-2021' 
-    },
-    { 
-        institue : 'Diwan Ballubhai Higher Secondary School', 
-        degree : '12th Boards',
-        duration : '2017' 
-    },
-    { 
-        institue : 'Diwan Ballubhai Secondary School', 
-        degree : '10th Board',
-        duration : '2015' 
-    }
-]
+import './resume.css'
+import constants from '../../constants';
+
+const { education_details } = constants
 
 const Education = (props) => {
 
-    const renderEducation = (item,index) => (
+    const renderEducation = (item, index) => (
 
         <div key={index} className="education-one my-4 justify-content-between d-flex flex-row">
 
@@ -35,13 +21,13 @@ const Education = (props) => {
             </div>
 
         </div>
-        
+
     )
 
     return (
         <div className="d-flex flex-column">
-        
-            {educationData.map((item,index) => renderEducation(item,index))}
+
+            {education_details.map((item, index) => renderEducation(item, index))}
 
         </div>
     );
