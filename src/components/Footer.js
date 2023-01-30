@@ -1,71 +1,75 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-  AiFillInstagram,
-} from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
 
-function Footer() {
-  let date = new Date();
-  let year = date.getFullYear();
-  return (
-    <Container fluid className="footer">
-      <Row>
-        <Col md="4" className="footer-copywright">
-          <h3>Designed and Developed by Soumyajit Behera</h3>
-        </Col>
-        <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} SB</h3>
-        </Col>
-        <Col md="4" className="footer-body">
-          <ul className="footer-icons">
-            <li className="social-icons">
-              <a
-                href="https://github.com/soumyajit4419"
+import { Container, Row, Col } from "react-bootstrap";
+
+import { FaLinkedinIn } from "react-icons/fa";
+import { AiFillGithub, AiOutlineTwitter, AiFillInstagram } from "react-icons/ai";
+
+import constants from "../constants";
+const { footerLeftTitle, footerMiddleTitle } = constants
+
+
+const githubUrl = "https://github.com/poojan010";
+const twitterUrl = "https://twitter.com/poojan010";
+const instaUrl = "https://www.instagram.com/poojan010/";
+const linkedinUrl = "https://www.linkedin.com/in/poojan-bhatt-8b7612187/";
+
+
+
+const SocialIcon = ({ children, url }) => {
+    return (
+        <li className="social-icons">
+            <a
+                href={url}
+                target="_blank"
                 style={{ color: "white" }}
-                target="_blank" 
                 rel="noopener noreferrer"
-              >
-                <AiFillGithub />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://twitter.com/Soumyajit4419"
-                style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <AiOutlineTwitter />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/soumyajit4419/"
-                style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <FaLinkedinIn />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.instagram.com/soumyajit4419"
-                style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <AiFillInstagram />
-              </a>
-            </li>
-          </ul>
-        </Col>
-      </Row>
-    </Container>
-  );
+            >
+                {children}
+            </a>
+        </li>
+    )
+}
+
+
+const Footer = () => {
+
+    return (
+        <Container fluid className="footer">
+            <Row>
+
+                <Col md="4" className="footer-copywright">
+                    <h3>{footerLeftTitle}</h3>
+                </Col>
+
+                <Col md="4" className="footer-copywright">
+                    <h3>{footerMiddleTitle}</h3>
+                </Col>
+
+                <Col md="4" className="footer-body">
+                    <ul className="footer-icons">
+
+                        <SocialIcon url={githubUrl}>
+                            <AiFillGithub />
+                        </SocialIcon>
+
+                        <SocialIcon url={twitterUrl}>
+                            <AiOutlineTwitter />
+                        </SocialIcon>
+
+                        <SocialIcon url={linkedinUrl}>
+                            <FaLinkedinIn />
+                        </SocialIcon>
+
+                        <SocialIcon url={instaUrl}>
+                            <AiFillInstagram />
+                        </SocialIcon>
+
+                    </ul>
+                </Col>
+            </Row>
+        </Container>
+    );
 }
 
 export default Footer;

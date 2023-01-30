@@ -9,7 +9,7 @@ import Preloader from "../src/components/PreLoader";
 import Resume from "./components/Resume/ResumeNew";
 import Projects from "./components/Projects/Projects";
 
-import ScrollToTop from "./components/ScrollToTop";
+import useScrollToTop from "./components/useScrollToTop";
 
 import "./App.css";
 import "./style.css";
@@ -18,8 +18,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const PRE_LOADER_TIME = 1200
 
-function App() {
+
+const App = () => {
+
     const [isPreLoading, setIsPreLoading] = useState(true);
+    const mainDivId = isPreLoading ? "no-scroll" : "scroll"
 
     useEffect(() => {
         const loadingTimer = setTimeout(() => {
@@ -29,12 +32,14 @@ function App() {
         return () => clearTimeout(loadingTimer);
     }, []);
 
+    useScrollToTop()
+
     return (
-        <Router>
+        <>
             <Preloader isPreLoading={isPreLoading} />
-            <div className="App" id={isPreLoading ? "no-scroll" : "scroll"}>
+
+            <div className="App" id={mainDivId}>
                 <Navbar />
-                <ScrollToTop />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/project" element={<Projects />} />
@@ -44,8 +49,12 @@ function App() {
                 </Routes>
                 <Footer />
             </div>
-        </Router>
+        </>
     );
 }
 
-export default App;
+export default () => (
+    <Router>
+        <App />
+    </Router>
+);

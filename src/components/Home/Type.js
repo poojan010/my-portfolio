@@ -1,22 +1,28 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 
-function Type() {
-  return (
-    <Typewriter
-      options={{
-        strings: [
-          "Developer",
-          "Deep Learning Engineer",
-          "MERN Stack Developer",
-          "Open Source Contributor",
-        ],
-        autoStart: true,
-        loop: true,
-        deleteSpeed: 50,
-      }}
-    />
-  );
+import constants from "../../constants";
+const { softwareDev, rnDev, enthusiaticDev, openSourceDev } = constants
+
+
+const strings = [
+    softwareDev,
+    rnDev,
+    enthusiaticDev,
+    openSourceDev
+]
+
+const Type = () => {
+    return (
+        <Typewriter
+            options={{
+                strings,
+                loop: true,
+                autoStart: true,
+                deleteSpeed: 50,
+            }}
+        />
+    );
 }
 
 export default Type;

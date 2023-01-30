@@ -1,3 +1,5 @@
+const year = (new Date).getFullYear();
+
 const constants = {
 
     /** Hero Section */
@@ -5,16 +7,17 @@ const constants = {
     hire_me_button: "Linkedin",
     resume_button: "Get Resume",
     nav_menu: {
-        home: "Home",
-        about: "About",
-        resume: "Resume",
-        contact: "Contact Me"
+        home: " Home",
+        about: " About",
+        projects: " Projects",
+        resume: " Resume",
+        blogs: " Blogs"
     },
     profile_image_url: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     resume_url: "https://drive.google.com/file/d/1_X4JYKlMil8gn8GL5PkyP6d3f6y_3GK5/view?usp=sharing",
     linkedin_url: "https://www.linkedin.com/in/poojan-bhatt-8b7612187/",
     animation_strings: [
-        'Entusiastiv dev 😎',
+        'Entusiastic dev 😎',
         'Mobile App Developer',
     ],
     tag_line: "I like to build mobile apps that solve every-day problems.",
@@ -149,6 +152,30 @@ const constants = {
 
     invalidEmail: "Email is Invalid",
 
+
+
+    footerLeftTitle: "Designed and Developed by Poojan Bhatt",
+    footerMiddleTitle: `Copyright © ${year} PB`,
+
+
+    hiThere: "Hi There! ",
+    imStrong: "I'M",
+    nameStrong: " POOJAN BHATT",
+
+
+    softwareDev: "Software Engineer",
+    rnDev: "React native developer",
+    enthusiaticDev: "Entusiastic dev",
+    openSourceDev: "Open Source Contributor",
+
+
+    letMe: "LET ME ",
+    introduce: " INTRODUCE",
+    mySelf: " MYSELF",
+
+    fellFree: "Feel free to",
+    connect: " connect",
+    withMeOn: " with me on"
 }
 
 export default constants

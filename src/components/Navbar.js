@@ -1,122 +1,118 @@
 import React, { useState } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import logo from "../Assets/logo.png";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { CgGitFork } from "react-icons/cg";
+
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+
 import { ImBlog } from "react-icons/im";
-import {
-  AiFillStar,
-  AiOutlineHome,
-  AiOutlineFundProjectionScreen,
-  AiOutlineUser,
-} from "react-icons/ai";
-
+import { CgGitFork } from "react-icons/cg";
 import { CgFileDocument } from "react-icons/cg";
+import { AiFillStar, AiOutlineHome, AiOutlineUser, AiOutlineFundProjectionScreen } from "react-icons/ai";
 
-function NavBar() {
-  const [expand, updateExpanded] = useState(false);
-  const [navColour, updateNavbar] = useState(false);
+import logo from "../Assets/poojan.png";
 
-  function scrollHandler() {
-    if (window.scrollY >= 20) {
-      updateNavbar(true);
-    } else {
-      updateNavbar(false);
+import constants from '../constants';
+const { nav_menu } = constants
+
+
+const portfolioGithubUrl = "https://github.com/poojan010/my-portfolio"
+const mediumBlogsUrl = "https://medium.com/me/stories/public"
+
+
+const BlogsIcon = () => <ImBlog style={{ marginBottom: "2px" }} />
+const ForkIcon = () => <CgGitFork style={{ fontSize: "1.2em" }} />
+const StarIcon = () => <AiFillStar style={{ fontSize: "1.1em" }} />
+const HomeIcon = () => <AiOutlineHome style={{ marginBottom: "3px" }} />
+const AboutIcon = () => <AiOutlineUser style={{ marginBottom: "3px" }} />
+const ResumeIcon = () => <CgFileDocument style={{ marginBottom: "3px" }} />
+const ProjectsIcon = () => <AiOutlineFundProjectionScreen style={{ marginBottom: "3px" }} />
+
+
+
+const NavBar = () => {
+
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
+    const closeNavBar = () => setIsNavExpanded(false)
+    const toggleNavBar = () => setIsNavExpanded(prev => !prev)
+
+    const [isNavSticky, setIsNavSticky] = useState(false);
+    const navBarClassName = isNavSticky ? "sticky" : "navbar"
+    const scrollHandler = () => {
+        if (window.scrollY >= 20) {
+            setIsNavSticky(true);
+        } else {
+            setIsNavSticky(false);
+        }
     }
-  }
+    window.addEventListener("scroll", scrollHandler);
 
-  window.addEventListener("scroll", scrollHandler);
 
-  return (
-    <Navbar
-      expanded={expand}
-      fixed="top"
-      expand="md"
-      className={navColour ? "sticky" : "navbar"}
-    >
-      <Container>
-        <Navbar.Brand href="/" className="d-flex">
-          <img src={logo} className="img-fluid logo" alt="brand" />
-        </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
-          onClick={() => {
-            updateExpanded(expand ? false : "expanded");
-          }}
+    return (
+        <Navbar
+            fixed="top"
+            expand="md"
+            expanded={isNavExpanded}
+            className={navBarClassName}
         >
-          <span></span>
-          <span></span>
-          <span></span>
-        </Navbar.Toggle>
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto" defaultActiveKey="#home">
-            <Nav.Item>
-              <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
-              </Nav.Link>
-            </Nav.Item>
+            <Container>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/about"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> About
-              </Nav.Link>
-            </Nav.Item>
+                <Navbar.Brand href="/" className="d-flex">
+                    <img src={logo} className="img-fluid logo" alt="brand" />
+                </Navbar.Brand>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/project"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                Projects
-              </Nav.Link>
-            </Nav.Item>
+                <Navbar.Toggle onClick={toggleNavBar} aria-controls="responsive-navbar-nav">
+                    <span />
+                    <span />
+                    <span />
+                </Navbar.Toggle>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/resume"
-                onClick={() => updateExpanded(false)}
-              >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
-              </Nav.Link>
-            </Nav.Item>
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="ms-auto" defaultActiveKey="#home">
 
-            <Nav.Item>
-              <Nav.Link
-                href="https://soumyajitblogs.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ImBlog style={{ marginBottom: "2px" }} /> Blogs
-              </Nav.Link>
-            </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/" onClick={closeNavBar}>
+                                <HomeIcon />{nav_menu.home}
+                            </Nav.Link>
+                        </Nav.Item>
 
-            <Nav.Item className="fork-btn">
-              <Button
-                href="https://github.com/soumyajit4419/Portfolio"
-                target="_blank"
-                className="fork-btn-inner"
-              >
-                <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
-                <AiFillStar style={{ fontSize: "1.1em" }} />
-              </Button>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/about" onClick={closeNavBar} >
+                                <AboutIcon />{nav_menu.about}
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/project" onClick={closeNavBar} >
+                                <ProjectsIcon />{nav_menu.projects}
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/resume" onClick={closeNavBar}>
+                                <ResumeIcon />{nav_menu.resume}
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link href={mediumBlogsUrl} target="_blank" rel="noreferrer" >
+                                <BlogsIcon />{nav_menu.blogs}
+                            </Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item className="fork-btn">
+                            <Button href={portfolioGithubUrl} target="_blank" className="fork-btn-inner" >
+                                <ForkIcon />{" "}<StarIcon />
+                            </Button>
+                        </Nav.Item>
+
+                    </Nav>
+                </Navbar.Collapse>
+
+            </Container>
+        </Navbar>
+    );
 }
 
 export default NavBar;
