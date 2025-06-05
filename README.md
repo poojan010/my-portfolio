@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Poojan's Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the source code for my personal portfolio website, built with React and hosted on AWS S3 as a static site.
 
-## Available Scripts
+## 🌐 Live Demo
 
-In the project directory, you can run:
+Check it out here:  
+[http://poojan-portfolio-bucket.s3-website.ap-south-1.amazonaws.com/](http://poojan-portfolio-bucket.s3-website.ap-south-1.amazonaws.com/)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🧭 Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This React app serves as my online portfolio showcasing my skills, projects, and professional background.
 
-### `npm test`
+### 📄 Pages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Home** — Introduction and overview
+- **About** — More about me
+- **Projects** — A list of my projects
+- **Resume** — My professional resume
+- **Blog** — Links to my blog hosted on Medium
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🗂️ Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+├── assets/         # Images, fonts, and other static assets
+├── components/     # React components mapped to pages/routes
+│   ├── Home/
+│   ├── About/
+│   ├── Projects/
+│   └── Resume/
+├── constants/      # App-wide constants and configurations
+└── App.js          # Main React app with routing logic
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🚀 Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The site is hosted as a static website on an AWS S3 bucket configured with website hosting enabled.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ⚙️ Deployment Pipeline
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+A GitHub Actions CI/CD pipeline is set up to automate builds and deploys on every push to the `main` branch:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Runs `yarn build` to create an optimized React production build.
+- Syncs the `build/` folder contents to the S3 bucket using:
 
-## Learn More
+  ```bash
+  aws s3 sync build/ s3://$BUCKET_NAME --delete --cache-control "no-cache"
+  ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Bucket name and AWS credentials are managed securely through GitHub Secrets.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🛠️ Getting Started (Development)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 1. Clone the repo
 
-### Analyzing the Bundle Size
+```bash
+git clone <repo-url>
+cd <repo-folder>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 2. Install dependencies
 
-### Making a Progressive Web App
+```bash
+yarn install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 3. Run the app locally
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+yarn start
+```
