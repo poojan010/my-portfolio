@@ -5,7 +5,7 @@ Welcome to the source code for my personal portfolio website, built with React a
 ## 🌐 Live Demo
 
 Check it out here:  
-[http://poojan-portfolio-bucket.s3-website.ap-south-1.amazonaws.com/](http://poojan-portfolio-bucket.s3-website.ap-south-1.amazonaws.com/)
+[https://pdbhatt.site/](https://pdbhatt.site/)
 
 ---
 
